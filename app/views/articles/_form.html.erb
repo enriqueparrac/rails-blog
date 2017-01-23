@@ -1,0 +1,31 @@
+<% name ||= "Crear" %>
+<h1><%= name %> artículo </h1>
+	<%= link_to "Back", articles_path, class:"underline" %>
+	<%= form_for(@article) do |f| %>
+		<% @article.errors.full_messages.each do |message| %>
+			<div class="be-red white top-space">
+				* <%= message %>
+			</div>
+		<%end%>
+
+		<div class="field">
+			<%= f.text_field :title, placeholder: "Título", class:"form-control" %>
+		</div>
+		<div class="field">
+			Portada: <%= f.file_field :cover %>
+		</div>
+		<div class="field">
+			<%= f.text_area :body, placeholder: "Escribe aquí el artículo", style:"height:250px;", class:"form-control" %>
+		</div>
+		<div class="field">
+			<label>Categorías</label>
+			<% @categories.each do |category| %>
+				<div class="field">
+					<%= check_box_tag "categories[]", category.id %> <%= category.name %>	
+				</div>				
+			<%end%>
+		</div>
+		<div class="field">
+			<%= f.submit "Guardar", class:"btn be-red white" %>
+		</div>
+	<%end%>

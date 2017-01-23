@@ -1,0 +1,8 @@
+<% @articles.each do |article| %>
+	<h2><%= link_to article.title, article %></h2>
+	<div>
+		<%= article.body %> 
+		<%= button_to "Eliminar", article, method: :delete, class:"btn-delete be-red white" %>		
+	</div>
+<%end%>
+<%= will_paginate @articles %>
